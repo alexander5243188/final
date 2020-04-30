@@ -14,8 +14,41 @@
     </ion-toolbar>
   </ion-header>
 
-  <div id="container">
-    <strong class="capitalize">{{ folder }}</strong>
-    <p>Explore <a target="_blank" rel="noopener noreferrer" href="https://ionicframework.com/docs/components">UI Components</a></p>
+  <div id="lista" *ngIf="folder =='lista'">    
+      <ion-card *ngFor = "let e of  recorridos" (click)="alertaRecorrido(e.detalle)">
+        <ion-grid>
+          <ion-row>
+            <ion-col>
+              <ion-title>Actividad {{e.actividad}}</ion-title>
+              <ion-title>costo {{e.costo}}</ion-title>
+              <ion-title>fecha {{e.fecha}}</ion-title>
+              <ion-title>tiempo {{e.tiempo}}</ion-title>
+            </ion-col>
+          </ion-row>
+        </ion-grid>
+    </ion-card>
   </div>
+
+  <div id="mensaje" *ngIf="folder =='mensaje'">
+    <form (ngSubmit)="agregar_Mensaje()">
+      <ion-title></ion-title>
+        <ion-item>
+          <ion-label>Nombre</ion-label>
+            <ion-input name="user.nombre" [(ngModel)]="nombre" type="text"></ion-input>        
+        </ion-item>
+        <ion-item>
+          <ion-label>Mensaje</ion-label>
+            <ion-input name="user.mensaje" [(ngModel)]="mensaje" type="text"></ion-input>        
+        </ion-item>
+        <ion-item>
+          <ion-label>email</ion-label>
+            <ion-input name="user.email" [(ngModel)]="email" type="email"></ion-input>        
+        </ion-item>        
+        <ion-button type="submit" (click)="alertaMensaje()"
+        >Mensaje</ion-button>
+    </form>
+  </div>
+
+  
+
 </ion-content>
